@@ -1,0 +1,676 @@
+<html>
+<head>
+	<title>PRAWbot V1 (2014-12-04)</title>
+    <link rel="stylesheet" type="text/css" href="../main.css" />
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Team');
+          data.addColumn('number', 'Positivity');
+          data.addRows([['ATL', 0.3928571428571428], ['BKN', 0.04761904761904748], ['BOS', 0.28409090909090906], ['CHA', 0.12499999999999989], ['CHI', 0.46951219512195114], ['CLE', 0.019607843137254978], ['DAL', 0.23484848484848478], ['DEN', -0.04347826086956518], ['DET', 0.1458333333333334], ['GSW', 0.3684210526315789], ['HOU', 0.3284671532846715], ['IND', 0.05882352941176464], ['LAC', 0.16393442622950802], ['LAL', 0.026455026455026454], ['MEM', 0.3387096774193548], ['MIA', 0.17948717948717935], ['MIL', 0.07692307692307696], ['MIN', -0.3333333333333333], ['NOP', 0.5789473684210525], ['NYK', 0.10416666666666659], ['OKC', 0.3508771929824561], ['ORL', 0.0], ['PHI', 0.11764705882352941], ['PHX', -0.6111111111111109], ['POR', 0.423076923076923], ['SAC', 0.2608695652173912], ['SAS', -0.05000000000000003], ['TOR', 0.3630952380952381], ['UTA', -0.25925925925925936], ['WAS', 0.06060606060606058]]);
+          var options = {
+            title: 'Positive Sentiment',
+            vAxis: {title: '(Pos. Words - Neg. Words) / Pos. Words',  titleTextStyle: {color: 'grey'}},
+            hAxis: {title: 'Team', titleTextStyle: {color: 'grey'}},
+            legend: 'none',
+            trendlines: { 0: {} }
+          };
+          var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+          chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Negative');
+          data.addColumn('number', 'Positive');
+          data.addColumn({type:'string', role:'tooltip'});
+          data.addRows([[2.2339027595269383, 3.679369250985545, 'ATL'], [3.894839337877313, 4.089581304771178, 'BKN'], [3.288100208768267, 4.592901878914405, 'BOS'], [4.142011834319527, 4.733727810650888, 'CHA'], [2.474402730375427, 4.6643913538111486, 'CHI'], [3.977724741447892, 4.05727923627685, 'CLE'], [4.067660088602497, 5.316149818767619, 'DAL'], [4.293381037567084, 4.114490161001789, 'DEN'], [3.9728682170542635, 4.651162790697675, 'DET'], [2.841918294849023, 4.499703966844287, 'GSW'], [3.0986864264061973, 4.6143482654092285, 'HOU'], [3.2653061224489797, 3.4693877551020407, 'IND'], [3.450608930987822, 4.127198917456021, 'LAC'], [3.609966647047283, 3.7080635668040025, 'LAL'], [3.4657650042265424, 5.240912933220625, 'MEM'], [3.5398230088495577, 4.314159292035398, 'MIA'], [3.2816773017319965, 3.555150410209663, 'MIL'], [4.767580452920143, 3.575685339690107, 'MIN'], [2.4539877300613497, 5.828220858895705, 'NOP'], [3.625632377740304, 4.0472175379426645, 'NYK'], [2.583798882681564, 3.9804469273743015, 'OKC'], [6.531531531531531, 6.531531531531531, 'ORL'], [4.172461752433936, 4.728789986091794, 'PHI'], [3.6249999999999996, 2.25, 'PHX'], [2.5802752293577984, 4.472477064220183, 'POR'], [3.0825022665457844, 4.170444242973708, 'SAC'], [3.53386621792175, 3.3655868742111905, 'SAS'], [2.8397027600849256, 4.45859872611465, 'TOR'], [4.934687953555878, 3.9187227866473147, 'UTA'], [4.0051679586563305, 4.263565891472868, 'WAS']]);
+        var options = {
+          title: 'Positive vs. Negative Word Usage',
+          hAxis: {title: 'Negative Words Used (per hundred)', minValue: 0, maxValue: 5},
+          vAxis: {title: 'Positive Words Used (per hundred)', minValue: 0, maxValue: 5},
+          legend: 'none',
+          crosshair: { trigger: 'both' }
+        };
+        var chart = new google.visualization.ScatterChart(document.getElementById('scatterplot'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var p = document.g
+      	var x = [
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.55, '#e74c3c'], ['Get', 0.55, '#e74c3c'], ['Im', 0.45, '#e74c3c'], ['One', 0.4, '#e74c3c'], ['Dont', 0.4, '#e74c3c'], ['See', 0.4, '#e74c3c'], ['Think', 0.4, '#e74c3c'], ['Read', 0.35, '#e74c3c'], ['First', 0.3, '#e74c3c'], ['Time', 0.3, '#e74c3c'], ['Looks', 0.3, '#e74c3c'], ['Got', 0.3, '#e74c3c'], ['Really', 0.3, '#e74c3c'], ['Back', 0.3, '#e74c3c'], ['Day', 0.3, '#e74c3c'], ['Much', 0.25, '#e74c3c'], ['Thats', 0.25, '#e74c3c'], ['Player', 0.25, '#e74c3c'], ['Score', 0.25, '#e74c3c'], ['Every', 0.25, '#e74c3c'], ['People', 0.25, '#e74c3c'], ['Guys', 0.25, '#e74c3c'], ['Starting', 0.2, '#e74c3c'], ['Players', 0.2, '#e74c3c'], ['Wrong', 0.2, '#e74c3c']]
+      	var data = google.visualization.arrayToDataTable(x);
+        var options = {
+          title: 'ATL Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('ATL'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Game', 0.74, '#34495e'], ['Like', 0.7, '#34495e'], ['Team', 0.48, '#34495e'], ['Right', 0.48, '#34495e'], ['Spurs', 0.48, '#34495e'], ['One', 0.44, '#34495e'], ['Season', 0.44, '#34495e'], ['Think', 0.39, '#34495e'], ['Really', 0.39, '#34495e'], ['Would', 0.35, '#34495e'], ['Fans', 0.35, '#34495e'], ['Win', 0.35, '#34495e'], ['Also', 0.35, '#34495e'], ['Great', 0.31, '#34495e'], ['Could', 0.31, '#34495e'], ['See', 0.31, '#34495e'], ['Still', 0.31, '#34495e'], ['Mirza', 0.31, '#34495e'], ['Nets', 0.31, '#34495e'], ['Back', 0.31, '#34495e'], ['Us', 0.31, '#34495e'], ['Well', 0.31, '#34495e'], ['Last', 0.26, '#34495e'], ['Know', 0.26, '#34495e'], ['Got', 0.26, '#34495e']]
+        );
+        var options = {
+          title: 'BKN Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('BKN'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Hes', 0.43, '#2ecc71'], ['Like', 0.39, '#2ecc71'], ['Im', 0.36, '#2ecc71'], ['Would', 0.34, '#2ecc71'], ['Game', 0.34, '#2ecc71'], ['One', 0.32, '#2ecc71'], ['Team', 0.32, '#2ecc71'], ['Think', 0.32, '#2ecc71'], ['Much', 0.3, '#2ecc71'], ['Get', 0.3, '#2ecc71'], ['Good', 0.3, '#2ecc71'], ['Dont', 0.28, '#2ecc71'], ['Going', 0.28, '#2ecc71'], ['Games', 0.26, '#2ecc71'], ['Thats', 0.26, '#2ecc71'], ['Still', 0.26, '#2ecc71'], ['Even', 0.24, '#2ecc71'], ['Bad', 0.24, '#2ecc71'], ['Make', 0.24, '#2ecc71'], ['Year', 0.24, '#2ecc71'], ['Well', 0.24, '#2ecc71'], ['Pretty', 0.21, '#2ecc71'], ['Definitely', 0.21, '#2ecc71'], ['Last', 0.19, '#2ecc71'], ['Around', 0.19, '#2ecc71']]
+		);
+        var options = {
+          title: 'BOS Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('BOS'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.66, '#3498db'], ['Dont', 0.61, '#3498db'], ['Get', 0.41, '#3498db'], ['Game', 0.41, '#3498db'], ['Much', 0.36, '#3498db'], ['Would', 0.36, '#3498db'], ['Think', 0.36, '#3498db'], ['Best', 0.36, '#3498db'], ['Good', 0.36, '#3498db'], ['Going', 0.36, '#3498db'], ['Run', 0.3, '#3498db'], ['Cant', 0.3, '#3498db'], ['Seed', 0.3, '#3498db'], ['Lance', 0.25, '#3498db'], ['Still', 0.25, '#3498db'], ['Lot', 0.25, '#3498db'], ['Though', 0.25, '#3498db'], ['Every', 0.2, '#3498db'], ['See', 0.2, '#3498db'], ['Got', 0.2, '#3498db'], ['Hes', 0.2, '#3498db'], ['Im', 0.2, '#3498db'], ['Always', 0.2, '#3498db'], ['Better', 0.2, '#3498db'], ['Playing', 0.2, '#3498db']]
+		);
+        var options = {
+          title: 'CHA Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('CHA'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.61, '#e74c3c'], ['Game', 0.47, '#e74c3c'], ['Would', 0.44, '#e74c3c'], ['One', 0.39, '#e74c3c'], ['Think', 0.34, '#e74c3c'], ['Well', 0.32, '#e74c3c'], ['Get', 0.31, '#e74c3c'], ['Still', 0.31, '#e74c3c'], ['Dont', 0.29, '#e74c3c'], ['Hes', 0.29, '#e74c3c'], ['Good', 0.29, '#e74c3c'], ['Year', 0.29, '#e74c3c'], ['Last', 0.26, '#e74c3c'], ['Better', 0.25, '#e74c3c'], ['Really', 0.25, '#e74c3c'], ['Team', 0.23, '#e74c3c'], ['People', 0.22, '#e74c3c'], ['Much', 0.2, '#e74c3c'], ['Pretty', 0.2, '#e74c3c'], ['Im', 0.2, '#e74c3c'], ['Thats', 0.2, '#e74c3c'], ['Jimmy', 0.19, '#e74c3c'], ['Guy', 0.19, '#e74c3c'], ['Going', 0.19, '#e74c3c'], ['Bulls', 0.19, '#e74c3c']]
+		);
+        var options = {
+          title: 'CHI Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('CHI'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Dont', 0.58, '#c0392b'], ['Get', 0.58, '#c0392b'], ['Im', 0.49, '#c0392b'], ['Like', 0.46, '#c0392b'], ['Know', 0.34, '#c0392b'], ['Kids', 0.34, '#c0392b'], ['Work', 0.28, '#c0392b'], ['Probably', 0.28, '#c0392b'], ['Bad', 0.25, '#c0392b'], ['One', 0.25, '#c0392b'], ['Nike', 0.25, '#c0392b'], ['Back', 0.25, '#c0392b'], ['Really', 0.25, '#c0392b'], ['Way', 0.25, '#c0392b'], ['Sure', 0.25, '#c0392b'], ['Getting', 0.22, '#c0392b'], ['Thats', 0.22, '#c0392b'], ['Theyre', 0.22, '#c0392b'], ['Fuck', 0.22, '#c0392b'], ['Would', 0.22, '#c0392b'], ['Time', 0.22, '#c0392b'], ['Love', 0.22, '#c0392b'], ['Years', 0.22, '#c0392b'], ['Well', 0.22, '#c0392b'], ['Go', 0.18, '#c0392b']]
+		);
+        var options = {
+          title: 'CLE Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('CLE'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Monta', 1.03, '#2980b9'], ['Good', 0.44, '#2980b9'], ['Like', 0.4, '#2980b9'], ['Shot', 0.38, '#2980b9'], ['Im', 0.38, '#2980b9'], ['One', 0.36, '#2980b9'], ['Would', 0.36, '#2980b9'], ['Game', 0.36, '#2980b9'], ['Hes', 0.36, '#2980b9'], ['Got', 0.34, '#2980b9'], ['Get', 0.34, '#2980b9'], ['People', 0.33, '#2980b9'], ['Dont', 0.31, '#2980b9'], ['Win', 0.29, '#2980b9'], ['Thats', 0.27, '#2980b9'], ['Travel', 0.27, '#2980b9'], ['Mavs', 0.25, '#2980b9'], ['Shit', 0.25, '#2980b9'], ['Team', 0.25, '#2980b9'], ['Bad', 0.23, '#2980b9'], ['See', 0.23, '#2980b9'], ['Man', 0.21, '#2980b9'], ['Fuck', 0.21, '#2980b9'], ['Lol', 0.21, '#2980b9'], ['Think', 0.21, '#2980b9']]
+		);
+        var options = {
+          title: 'DAL Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('DAL'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Get', 0.56, '#f39c12'], ['Last', 0.4, '#f39c12'], ['Much', 0.4, '#f39c12'], ['Go', 0.4, '#f39c12'], ['Time', 0.4, '#f39c12'], ['Really', 0.4, '#f39c12'], ['Im', 0.4, '#f39c12'], ['Keep', 0.4, '#f39c12'], ['Even', 0.32, '#f39c12'], ['Would', 0.32, '#f39c12'], ['Post', 0.32, '#f39c12'], ['Still', 0.32, '#f39c12'], ['Guy', 0.32, '#f39c12'], ['People', 0.32, '#f39c12'], ['Better', 0.32, '#f39c12'], ['Hes', 0.32, '#f39c12'], ['Though', 0.32, '#f39c12'], ['Theres', 0.32, '#f39c12'], ['Game', 0.32, '#f39c12'], ['Hickson', 0.32, '#f39c12'], ['Least', 0.24, '#f39c12'], ['Great', 0.24, '#f39c12'], ['Like', 0.24, '#f39c12'], ['One', 0.24, '#f39c12'], ['Say', 0.24, '#f39c12']]
+		);
+        var options = {
+          title: 'DEN Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('DEN'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.51, '#e74c3c'], ['Think', 0.47, '#e74c3c'], ['Smith', 0.47, '#e74c3c'], ['Player', 0.42, '#e74c3c'], ['Team', 0.37, '#e74c3c'], ['Game', 0.33, '#e74c3c'], ['Dont', 0.33, '#e74c3c'], ['Really', 0.33, '#e74c3c'], ['Get', 0.33, '#e74c3c'], ['Good', 0.33, '#e74c3c'], ['Look', 0.28, '#e74c3c'], ['Would', 0.28, '#e74c3c'], ['Could', 0.28, '#e74c3c'], ['Josh', 0.28, '#e74c3c'], ['Doesnt', 0.28, '#e74c3c'], ['Also', 0.28, '#e74c3c'], ['Season', 0.28, '#e74c3c'], ['One', 0.23, '#e74c3c'], ['Pistons', 0.23, '#e74c3c'], ['Monroe', 0.23, '#e74c3c'], ['Better', 0.23, '#e74c3c'], ['Probably', 0.23, '#e74c3c'], ['Drummond', 0.23, '#e74c3c'], ['Im', 0.23, '#e74c3c'], ['Kendrick', 0.23, '#e74c3c']]
+		);
+        var options = {
+          title: 'DET Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('DET'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.49, '#3498db'], ['One', 0.45, '#3498db'], ['Would', 0.42, '#3498db'], ['Think', 0.4, '#3498db'], ['Im', 0.35, '#3498db'], ['Good', 0.33, '#3498db'], ['Dont', 0.31, '#3498db'], ['Team', 0.31, '#3498db'], ['Still', 0.31, '#3498db'], ['People', 0.3, '#3498db'], ['Game', 0.3, '#3498db'], ['Hes', 0.3, '#3498db'], ['Thats', 0.3, '#3498db'], ['Maybe', 0.26, '#3498db'], ['Get', 0.24, '#3498db'], ['Youre', 0.24, '#3498db'], ['Know', 0.24, '#3498db'], ['Warriors', 0.23, '#3498db'], ['Even', 0.21, '#3498db'], ['Lol', 0.21, '#3498db'], ['Play', 0.21, '#3498db'], ['Really', 0.21, '#3498db'], ['Doesnt', 0.21, '#3498db'], ['Say', 0.19, '#3498db'], ['Monta', 0.19, '#3498db']]
+		);
+        var options = {
+          title: 'GSW Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('GSW'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.58, '#c0392b'], ['One', 0.4, '#c0392b'], ['Dont', 0.39, '#c0392b'], ['Team', 0.39, '#c0392b'], ['Good', 0.38, '#c0392b'], ['Hes', 0.35, '#c0392b'], ['Think', 0.35, '#c0392b'], ['Go', 0.27, '#c0392b'], ['Would', 0.27, '#c0392b'], ['Game', 0.26, '#c0392b'], ['Better', 0.26, '#c0392b'], ['Get', 0.26, '#c0392b'], ['Say', 0.24, '#c0392b'], ['Time', 0.24, '#c0392b'], ['Got', 0.24, '#c0392b'], ['Well', 0.24, '#c0392b'], ['Much', 0.23, '#c0392b'], ['Youre', 0.23, '#c0392b'], ['Going', 0.23, '#c0392b'], ['Dmo', 0.21, '#c0392b'], ['Dwight', 0.21, '#c0392b'], ['Really', 0.21, '#c0392b'], ['Back', 0.2, '#c0392b'], ['Im', 0.2, '#c0392b'], ['Actually', 0.2, '#c0392b']]
+		);
+        var options = {
+          title: 'HOU Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('HOU'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.67, '#f39c12'], ['People', 0.52, '#f39c12'], ['Last', 0.44, '#f39c12'], ['Even', 0.44, '#f39c12'], ['Im', 0.44, '#f39c12'], ['Know', 0.37, '#f39c12'], ['One', 0.37, '#f39c12'], ['Feel', 0.37, '#f39c12'], ['Always', 0.37, '#f39c12'], ['Dont', 0.37, '#f39c12'], ['Would', 0.3, '#f39c12'], ['Percentage', 0.3, '#f39c12'], ['Got', 0.3, '#f39c12'], ['Best', 0.3, '#f39c12'], ['Get', 0.3, '#f39c12'], ['Shooting', 0.3, '#f39c12'], ['Go', 0.22, '#f39c12'], ['Thats', 0.22, '#f39c12'], ['Said', 0.22, '#f39c12'], ['Point', 0.22, '#f39c12'], ['Ever', 0.22, '#f39c12'], ['Goals', 0.22, '#f39c12'], ['Possible', 0.22, '#f39c12'], ['Time', 0.22, '#f39c12'], ['Still', 0.22, '#f39c12']]
+		);
+        var options = {
+          title: 'IND Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('IND'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.58, '#e74c3c'], ['Get', 0.44, '#e74c3c'], ['Game', 0.4, '#e74c3c'], ['Im', 0.35, '#e74c3c'], ['Dont', 0.34, '#e74c3c'], ['Would', 0.33, '#e74c3c'], ['Think', 0.33, '#e74c3c'], ['One', 0.3, '#e74c3c'], ['Good', 0.29, '#e74c3c'], ['Really', 0.27, '#e74c3c'], ['Team', 0.27, '#e74c3c'], ['Thats', 0.25, '#e74c3c'], ['Hes', 0.23, '#e74c3c'], ['See', 0.21, '#e74c3c'], ['Got', 0.21, '#e74c3c'], ['People', 0.2, '#e74c3c'], ['Time', 0.19, '#e74c3c'], ['Play', 0.19, '#e74c3c'], ['Still', 0.18, '#e74c3c'], ['Much', 0.18, '#e74c3c'], ['Even', 0.18, '#e74c3c'], ['Also', 0.18, '#e74c3c'], ['Shit', 0.17, '#e74c3c'], ['Well', 0.17, '#e74c3c'], ['Way', 0.16, '#e74c3c']]
+		);
+        var options = {
+          title: 'LAC Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('LAC'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.55, '#9b59b6'], ['Kobe', 0.36, '#9b59b6'], ['Would', 0.34, '#9b59b6'], ['Get', 0.33, '#9b59b6'], ['Think', 0.33, '#9b59b6'], ['One', 0.33, '#9b59b6'], ['Dont', 0.32, '#9b59b6'], ['Im', 0.32, '#9b59b6'], ['Game', 0.29, '#9b59b6'], ['Team', 0.29, '#9b59b6'], ['Hes', 0.27, '#9b59b6'], ['Really', 0.25, '#9b59b6'], ['Good', 0.24, '#9b59b6'], ['Time', 0.23, '#9b59b6'], ['Still', 0.21, '#9b59b6'], ['Even', 0.21, '#9b59b6'], ['Thats', 0.2, '#9b59b6'], ['People', 0.2, '#9b59b6'], ['See', 0.19, '#9b59b6'], ['Got', 0.19, '#9b59b6'], ['Know', 0.19, '#9b59b6'], ['Much', 0.18, '#9b59b6'], ['Year', 0.18, '#9b59b6'], ['Going', 0.18, '#9b59b6'], ['Well', 0.17, '#9b59b6']]
+		);
+        var options = {
+          title: 'LAL Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('LAL'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.46, '#2980b9'], ['Better', 0.46, '#2980b9'], ['Game', 0.46, '#2980b9'], ['Marc', 0.42, '#2980b9'], ['Would', 0.42, '#2980b9'], ['Time', 0.37, '#2980b9'], ['Got', 0.37, '#2980b9'], ['Hes', 0.37, '#2980b9'], ['Even', 0.32, '#2980b9'], ['One', 0.32, '#2980b9'], ['Theories', 0.32, '#2980b9'], ['Team', 0.32, '#2980b9'], ['Im', 0.32, '#2980b9'], ['Much', 0.28, '#2980b9'], ['Go', 0.28, '#2980b9'], ['Still', 0.28, '#2980b9'], ['Really', 0.28, '#2980b9'], ['Get', 0.28, '#2980b9'], ['Years', 0.28, '#2980b9'], ['Us', 0.28, '#2980b9'], ['Offense', 0.23, '#2980b9'], ['Shit', 0.23, '#2980b9'], ['Someone', 0.23, '#2980b9'], ['Best', 0.23, '#2980b9'], ['Way', 0.23, '#2980b9']]
+		);
+        var options = {
+          title: 'MEM Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('MEM'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.87, '#c0392b'], ['Think', 0.68, '#c0392b'], ['See', 0.44, '#c0392b'], ['People', 0.4, '#c0392b'], ['Get', 0.4, '#c0392b'], ['Dont', 0.36, '#c0392b'], ['Man', 0.32, '#c0392b'], ['One', 0.32, '#c0392b'], ['Time', 0.32, '#c0392b'], ['Team', 0.32, '#c0392b'], ['Really', 0.32, '#c0392b'], ['Year', 0.32, '#c0392b'], ['Still', 0.28, '#c0392b'], ['Could', 0.28, '#c0392b'], ['Im', 0.28, '#c0392b'], ['Back', 0.28, '#c0392b'], ['Post', 0.24, '#c0392b'], ['Love', 0.24, '#c0392b'], ['Cant', 0.24, '#c0392b'], ['Game', 0.24, '#c0392b'], ['Take', 0.24, '#c0392b'], ['Go', 0.2, '#c0392b'], ['Know', 0.2, '#c0392b'], ['Would', 0.2, '#c0392b'], ['Thing', 0.2, '#c0392b']]
+		);
+        var options = {
+          title: 'MIA Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('MIA'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Game', 0.57, '#2ecc71'], ['Team', 0.52, '#2ecc71'], ['Would', 0.43, '#2ecc71'], ['Im', 0.43, '#2ecc71'], ['Like', 0.38, '#2ecc71'], ['Time', 0.38, '#2ecc71'], ['Way', 0.38, '#2ecc71'], ['Thats', 0.33, '#2ecc71'], ['Really', 0.33, '#2ecc71'], ['Still', 0.29, '#2ecc71'], ['Even', 0.29, '#2ecc71'], ['Yet', 0.29, '#2ecc71'], ['Years', 0.29, '#2ecc71'], ['Play', 0.29, '#2ecc71'], ['Look', 0.24, '#2ecc71'], ['Know', 0.24, '#2ecc71'], ['One', 0.24, '#2ecc71'], ['Jabari', 0.24, '#2ecc71'], ['Think', 0.24, '#2ecc71'], ['Youre', 0.24, '#2ecc71'], ['Lot', 0.24, '#2ecc71'], ['Good', 0.24, '#2ecc71'], ['Though', 0.24, '#2ecc71'], ['Year', 0.24, '#2ecc71'], ['Fucking', 0.24, '#2ecc71']]
+		);
+        var options = {
+          title: 'MIL Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('MIL'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Dont', 0.58, '#2980b9'], ['Like', 0.49, '#2980b9'], ['Team', 0.47, '#2980b9'], ['Well', 0.38, '#2980b9'], ['Even', 0.36, '#2980b9'], ['Get', 0.36, '#2980b9'], ['Im', 0.36, '#2980b9'], ['Go', 0.33, '#2980b9'], ['Would', 0.33, '#2980b9'], ['See', 0.33, '#2980b9'], ['Think', 0.33, '#2980b9'], ['Good', 0.33, '#2980b9'], ['Time', 0.3, '#2980b9'], ['Play', 0.3, '#2980b9'], ['Wolves', 0.27, '#2980b9'], ['One', 0.27, '#2980b9'], ['Guys', 0.27, '#2980b9'], ['Really', 0.27, '#2980b9'], ['Game', 0.27, '#2980b9'], ['Going', 0.27, '#2980b9'], ['Still', 0.25, '#2980b9'], ['Back', 0.25, '#2980b9'], ['Year', 0.25, '#2980b9'], ['Didnt', 0.25, '#2980b9'], ['Us', 0.25, '#2980b9']]
+		);
+        var options = {
+          title: 'MIN Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('MIN'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.66, '#e74c3c'], ['Team', 0.66, '#e74c3c'], ['Much', 0.55, '#e74c3c'], ['Good', 0.55, '#e74c3c'], ['Point', 0.44, '#e74c3c'], ['Dont', 0.44, '#e74c3c'], ['Pretty', 0.44, '#e74c3c'], ['Hes', 0.44, '#e74c3c'], ['Mekel', 0.44, '#e74c3c'], ['Look', 0.33, '#e74c3c'], ['Guy', 0.33, '#e74c3c'], ['Even', 0.33, '#e74c3c'], ['One', 0.33, '#e74c3c'], ['Would', 0.33, '#e74c3c'], ['Already', 0.33, '#e74c3c'], ['Make', 0.33, '#e74c3c'], ['First', 0.33, '#e74c3c'], ['Bowlers', 0.33, '#e74c3c'], ['Isnt', 0.33, '#e74c3c'], ['Cricket', 0.33, '#e74c3c'], ['Right', 0.33, '#e74c3c'], ['Nice', 0.33, '#e74c3c'], ['Foot', 0.33, '#e74c3c'], ['Better', 0.33, '#e74c3c'], ['Game', 0.33, '#e74c3c']]
+		);
+        var options = {
+          title: 'NOP Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('NOP'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.65, '#d35400'], ['Im', 0.65, '#d35400'], ['Dont', 0.42, '#d35400'], ['Year', 0.42, '#d35400'], ['Think', 0.39, '#d35400'], ['Much', 0.34, '#d35400'], ['Would', 0.34, '#d35400'], ['Get', 0.34, '#d35400'], ['Team', 0.31, '#d35400'], ['Really', 0.31, '#d35400'], ['Last', 0.29, '#d35400'], ['One', 0.26, '#d35400'], ['Back', 0.26, '#d35400'], ['Could', 0.26, '#d35400'], ['Point', 0.23, '#d35400'], ['People', 0.23, '#d35400'], ['Good', 0.23, '#d35400'], ['Game', 0.23, '#d35400'], ['Jr', 0.21, '#d35400'], ['Love', 0.21, '#d35400'], ['Sure', 0.21, '#d35400'], ['Saying', 0.18, '#d35400'], ['Guy', 0.18, '#d35400'], ['Know', 0.18, '#d35400'], ['Shit', 0.18, '#d35400']]
+		);
+        var options = {
+          title: 'NYK Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('NYK'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.72, '#2980b9'], ['Dont', 0.49, '#2980b9'], ['Im', 0.39, '#2980b9'], ['Know', 0.36, '#2980b9'], ['Get', 0.36, '#2980b9'], ['Got', 0.33, '#2980b9'], ['Think', 0.33, '#2980b9'], ['Back', 0.33, '#2980b9'], ['Hes', 0.33, '#2980b9'], ['Game', 0.33, '#2980b9'], ['Much', 0.3, '#2980b9'], ['Theyre', 0.3, '#2980b9'], ['One', 0.3, '#2980b9'], ['First', 0.3, '#2980b9'], ['Really', 0.3, '#2980b9'], ['Last', 0.26, '#2980b9'], ['Team', 0.26, '#2980b9'], ['People', 0.26, '#2980b9'], ['Better', 0.26, '#2980b9'], ['Youre', 0.26, '#2980b9'], ['Year', 0.26, '#2980b9'], ['New', 0.26, '#2980b9'], ['Players', 0.23, '#2980b9'], ['Time', 0.23, '#2980b9'], ['Away', 0.23, '#2980b9']]
+		);
+        var options = {
+          title: 'OKC Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('OKC'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['One', 0.42, '#2980b9'], ['Would', 0.42, '#2980b9'], ['Think', 0.42, '#2980b9'], ['Play', 0.42, '#2980b9'], ['Hes', 0.37, '#2980b9'], ['Good', 0.37, '#2980b9'], ['Im', 0.37, '#2980b9'], ['Cant', 0.37, '#2980b9'], ['Like', 0.32, '#2980b9'], ['Game', 0.32, '#2980b9'], ['Going', 0.32, '#2980b9'], ['Well', 0.32, '#2980b9'], ['Last', 0.26, '#2980b9'], ['Much', 0.26, '#2980b9'], ['Go', 0.26, '#2980b9'], ['Thats', 0.26, '#2980b9'], ['Make', 0.26, '#2980b9'], ['People', 0.26, '#2980b9'], ['Dont', 0.26, '#2980b9'], ['2', 0.26, '#2980b9'], ['Really', 0.26, '#2980b9'], ['Yeah', 0.26, '#2980b9'], ['Things', 0.21, '#2980b9'], ['Literally', 0.21, '#2980b9'], ['Even', 0.21, '#2980b9']]
+		);
+        var options = {
+          title: 'ORL Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('ORL'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.55, '#e74c3c'], ['Hes', 0.53, '#e74c3c'], ['Dont', 0.37, '#e74c3c'], ['One', 0.34, '#e74c3c'], ['Game', 0.31, '#e74c3c'], ['Year', 0.28, '#e74c3c'], ['Think', 0.28, '#e74c3c'], ['Player', 0.24, '#e74c3c'], ['Last', 0.23, '#e74c3c'], ['Would', 0.23, '#e74c3c'], ['Get', 0.23, '#e74c3c'], ['|', 0.23, '#e74c3c'], ['Still', 0.23, '#e74c3c'], ['Fuck', 0.21, '#e74c3c'], ['Percent', 0.21, '#e74c3c'], ['Games', 0.21, '#e74c3c'], ['Shooting', 0.21, '#e74c3c'], ['College', 0.21, '#e74c3c'], ['Team', 0.21, '#e74c3c'], ['Good', 0.21, '#e74c3c'], ['Win', 0.21, '#e74c3c'], ['Nba', 0.2, '#e74c3c'], ['Ive', 0.2, '#e74c3c'], ['Im', 0.2, '#e74c3c'], ['Going', 0.2, '#e74c3c']]
+		);
+        var options = {
+          title: 'PHI Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('PHI'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.59, '#d35400'], ['One', 0.46, '#d35400'], ['Think', 0.46, '#d35400'], ['Player', 0.39, '#d35400'], ['Hes', 0.39, '#d35400'], ['Youre', 0.39, '#d35400'], ['Good', 0.39, '#d35400'], ['Bad', 0.33, '#d35400'], ['Make', 0.33, '#d35400'], ['People', 0.33, '#d35400'], ['Time', 0.33, '#d35400'], ['Never', 0.33, '#d35400'], ['Could', 0.33, '#d35400'], ['Get', 0.33, '#d35400'], ['Game', 0.33, '#d35400'], ['Dragic', 0.26, '#d35400'], ['Thats', 0.26, '#d35400'], ['Position', 0.26, '#d35400'], ['Point', 0.26, '#d35400'], ['Would', 0.26, '#d35400'], ['See', 0.26, '#d35400'], ['Still', 0.26, '#d35400'], ['Pass', 0.26, '#d35400'], ['Pg', 0.26, '#d35400'], ['Love', 0.26, '#d35400']]
+		);
+        var options = {
+          title: 'PHX Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('PHX'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Would', 0.63, '#e74c3c'], ['Think', 0.49, '#e74c3c'], ['Get', 0.49, '#e74c3c'], ['Game', 0.49, '#e74c3c'], ['Like', 0.38, '#e74c3c'], ['Good', 0.38, '#e74c3c'], ['Thats', 0.35, '#e74c3c'], ['Team', 0.35, '#e74c3c'], ['Last', 0.31, '#e74c3c'], ['Time', 0.31, '#e74c3c'], ['Make', 0.28, '#e74c3c'], ['Going', 0.28, '#e74c3c'], ['Something', 0.28, '#e74c3c'], ['Say', 0.24, '#e74c3c'], ['First', 0.24, '#e74c3c'], ['Got', 0.24, '#e74c3c'], ['Really', 0.24, '#e74c3c'], ['Hes', 0.24, '#e74c3c'], ['Way', 0.24, '#e74c3c'], ['Im', 0.24, '#e74c3c'], ['Cant', 0.24, '#e74c3c'], ['Doesnt', 0.24, '#e74c3c'], ['Know', 0.21, '#e74c3c'], ['Green', 0.21, '#e74c3c'], ['People', 0.21, '#e74c3c']]
+		);
+        var options = {
+          title: 'POR Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('POR'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Team', 0.62, '#9b59b6'], ['See', 0.46, '#9b59b6'], ['Like', 0.42, '#9b59b6'], ['Ball', 0.42, '#9b59b6'], ['Im', 0.42, '#9b59b6'], ['One', 0.37, '#9b59b6'], ['League', 0.37, '#9b59b6'], ['Gay', 0.37, '#9b59b6'], ['Games', 0.37, '#9b59b6'], ['5', 0.37, '#9b59b6'], ['Watch', 0.33, '#9b59b6'], ['Lot', 0.33, '#9b59b6'], ['Much', 0.29, '#9b59b6'], ['Would', 0.29, '#9b59b6'], ['Player', 0.29, '#9b59b6'], ['People', 0.29, '#9b59b6'], ['Dont', 0.29, '#9b59b6'], ['Well', 0.29, '#9b59b6'], ['Play', 0.29, '#9b59b6'], ['Players', 0.25, '#9b59b6'], ['Even', 0.25, '#9b59b6'], ['Go', 0.25, '#9b59b6'], ['Time', 0.25, '#9b59b6'], ['Since', 0.25, '#9b59b6'], ['Didnt', 0.25, '#9b59b6']]
+		);
+        var options = {
+          title: 'SAC Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('SAC'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.64, '#7f8c8d'], ['Game', 0.62, '#7f8c8d'], ['One', 0.42, '#7f8c8d'], ['Im', 0.38, '#7f8c8d'], ['Get', 0.38, '#7f8c8d'], ['Know', 0.36, '#7f8c8d'], ['Fuck', 0.33, '#7f8c8d'], ['Would', 0.31, '#7f8c8d'], ['Think', 0.31, '#7f8c8d'], ['Really', 0.29, '#7f8c8d'], ['Thats', 0.27, '#7f8c8d'], ['Even', 0.26, '#7f8c8d'], ['Dont', 0.26, '#7f8c8d'], ['Didnt', 0.26, '#7f8c8d'], ['Team', 0.26, '#7f8c8d'], ['Hes', 0.26, '#7f8c8d'], ['Going', 0.26, '#7f8c8d'], ['Right', 0.24, '#7f8c8d'], ['People', 0.22, '#7f8c8d'], ['Make', 0.22, '#7f8c8d'], ['Good', 0.22, '#7f8c8d'], ['Time', 0.2, '#7f8c8d'], ['Pop', 0.2, '#7f8c8d'], ['Someone', 0.2, '#7f8c8d'], ['Better', 0.2, '#7f8c8d']]
+		);
+
+        var options = {
+          title: 'SAS Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('SAS'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.59, '#9b59b6'], ['Would', 0.41, '#9b59b6'], ['Dont', 0.4, '#9b59b6'], ['Team', 0.38, '#9b59b6'], ['Get', 0.37, '#9b59b6'], ['One', 0.36, '#9b59b6'], ['Really', 0.35, '#9b59b6'], ['Hes', 0.32, '#9b59b6'], ['Think', 0.32, '#9b59b6'], ['Good', 0.29, '#9b59b6'], ['Game', 0.29, '#9b59b6'], ['Games', 0.28, '#9b59b6'], ['Got', 0.24, '#9b59b6'], ['Back', 0.24, '#9b59b6'], ['Thats', 0.24, '#9b59b6'], ['Lowry', 0.23, '#9b59b6'], ['Year', 0.23, '#9b59b6'], ['Still', 0.23, '#9b59b6'], ['Season', 0.23, '#9b59b6'], ['Going', 0.22, '#9b59b6'], ['Pretty', 0.21, '#9b59b6'], ['Teams', 0.21, '#9b59b6'], ['Time', 0.2, '#9b59b6'], ['Im', 0.2, '#9b59b6'], ['See', 0.18, '#9b59b6']]
+		);
+
+        var options = {
+          title: 'TOR Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('TOR'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Game', 0.73, '#f1c40f'], ['Utah', 0.58, '#f1c40f'], ['Like', 0.47, '#f1c40f'], ['Ball', 0.42, '#f1c40f'], ['Great', 0.37, '#f1c40f'], ['Would', 0.37, '#f1c40f'], ['Last', 0.31, '#f1c40f'], ['One', 0.31, '#f1c40f'], ['Season', 0.31, '#f1c40f'], ['Even', 0.26, '#f1c40f'], ['Bad', 0.26, '#f1c40f'], ['Huge', 0.26, '#f1c40f'], ['Make', 0.26, '#f1c40f'], ['Defense', 0.26, '#f1c40f'], ['Night', 0.26, '#f1c40f'], ['First', 0.26, '#f1c40f'], ['Went', 0.26, '#f1c40f'], ['Good', 0.26, '#f1c40f'], ['Im', 0.26, '#f1c40f'], ['Top', 0.21, '#f1c40f'], ['Smoke', 0.21, '#f1c40f'], ['Every', 0.21, '#f1c40f'], ['Dont', 0.21, '#f1c40f'], ['Days', 0.21, '#f1c40f'], ['2', 0.21, '#f1c40f']]
+		);
+
+        var options = {
+          title: 'UTA Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('UTA'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+      	var data = google.visualization.arrayToDataTable([
+          ['Word', 'Occurences per 100 Words', {role: 'style'}],
+          ['Like', 0.58, '#e74c3c'], ['Im', 0.44, '#e74c3c'], ['Game', 0.41, '#e74c3c'], ['Even', 0.36, '#e74c3c'], ['Guy', 0.36, '#e74c3c'], ['One', 0.34, '#e74c3c'], ['Team', 0.34, '#e74c3c'], ['Would', 0.32, '#e74c3c'], ['Think', 0.32, '#e74c3c'], ['Wall', 0.29, '#e74c3c'], ['Take', 0.29, '#e74c3c'], ['People', 0.24, '#e74c3c'], ['Dont', 0.24, '#e74c3c'], ['See', 0.24, '#e74c3c'], ['Get', 0.24, '#e74c3c'], ['Hes', 0.24, '#e74c3c'], ['Raise', 0.22, '#e74c3c'], ['Time', 0.22, '#e74c3c'], ['Got', 0.22, '#e74c3c'], ['Really', 0.22, '#e74c3c'], ['Fans', 0.22, '#e74c3c'], ['Way', 0.22, '#e74c3c'], ['Season', 0.22, '#e74c3c'], ['Gets', 0.19, '#e74c3c'], ['Much', 0.17, '#e74c3c']]
+		);
+        var options = {
+          title: 'WAS Fanbase Frequency Analysis',
+          vAxis: {title: 'Word',  titleTextStyle: {color: 'grey'}},
+          hAxis: {title: 'Occurences per 100 Words',  titleTextStyle: {color: 'grey'}},
+          legend: { position: "none" }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('WAS'));
+        chart.draw(data, options);
+      }
+      </script>
+</head>
+<body>
+	<div style="float: left; height: 100%; width: 100px; overflow: auto; border-right: 1px solid #95a5a6; padding-left: 15px;">
+		<div>
+			<a href="#barchart"><img src="../images/barchart.png" /></a>
+			<a href="#scatterplot"><img src="../images/scatterplot.png" /></a>
+			<a href="#ATL"><img src="../images/team-logos/atl.gif" /></a>
+			<a href="#BKN"><img src="../images/team-logos/bkn.gif" /></a>
+			<a href="#BOS"><img src="../images/team-logos/bos.gif" /></a>
+			<a href="#CHA"><img src="../images/team-logos/cha.gif" /></a>
+			<a href="#CHI"><img src="../images/team-logos/chi.gif" /></a>
+			<a href="#CLE"><img src="../images/team-logos/cle.gif" /></a>
+			<a href="#DAL"><img src="../images/team-logos/dal.gif" /></a>
+			<a href="#DEN"><img src="../images/team-logos/den.gif" /></a>
+			<a href="#DET"><img src="../images/team-logos/det.gif" /></a>
+			<a href="#GSW"><img src="../images/team-logos/gsw.gif" /></a>
+			<a href="#HOU"><img src="../images/team-logos/hou.gif" /></a>
+			<a href="#IND"><img src="../images/team-logos/ind.gif" /></a>
+			<a href="#LAC"><img src="../images/team-logos/lac.gif" /></a>
+			<a href="#LAL"><img src="../images/team-logos/lal.gif" /></a>
+			<a href="#MEM"><img src="../images/team-logos/mem.gif" /></a>
+			<a href="#MIA"><img src="../images/team-logos/mia.gif" /></a>
+			<a href="#MIL"><img src="../images/team-logos/mil.gif" /></a>
+			<a href="#MIN"><img src="../images/team-logos/min.gif" /></a>
+			<a href="#NOP"><img src="../images/team-logos/nop.gif" /></a>
+			<a href="#NYK"><img src="../images/team-logos/nyk.gif" /></a>
+			<a href="#OKC"><img src="../images/team-logos/okc.gif" /></a>
+			<a href="#ORL"><img src="../images/team-logos/orl.gif" /></a>
+			<a href="#PHI"><img src="../images/team-logos/phi.gif" /></a>
+			<a href="#PHX"><img src="../images/team-logos/phx.gif" /></a>
+			<a href="#POR"><img src="../images/team-logos/por.gif" /></a>
+			<a href="#SAC"><img src="../images/team-logos/sac.gif" /></a>
+			<a href="#SAS"><img src="../images/team-logos/sas.gif" /></a>
+			<a href="#TOR"><img src="../images/team-logos/tor.gif" /></a>
+			<a href="#UTA"><img src="../images/team-logos/uta.gif" /></a>
+			<a href="#WAS"><img src="../images/team-logos/was.gif" /></a>
+		</div>
+	</div>
+	<div style="float: right; height: 100%; width: 1000px; overflow: auto;">
+		<div>
+			<div class="graphic" id="barchart" style="width: 750px; height: 60%; padding: 120px 0px;"></div>
+      		<div class="graphic" id="scatterplot" style="width: 600px; height: 600px;"></div>
+			<div class="graphic" id="ATL" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="BKN" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="BOS" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="CHA" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="CHI" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="CLE" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="DAL" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="DEN" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="DET" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="GSW" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="HOU" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="IND" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="LAC" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="LAL" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="MEM" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="MIA" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="MIL" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="MIN" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="NOP" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="NYK" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="OKC" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="ORL" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="PHI" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="PHX" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="POR" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="SAC" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="SAS" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="TOR" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="UTA" style="width: 900px; height: 100%;"></div>
+			<div class="graphic" id="WAS" style="width: 900px; height: 100%;"></div>
+		</div>
+	</div>
+	
+</body>
+</html>
